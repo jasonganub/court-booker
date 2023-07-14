@@ -1,5 +1,9 @@
 package main
 
-func main() {
+import (
+	"github.com/jasonganub/court-booker/cmd"
+)
 
+func main() {
+	cmd.Execute()
 }
