@@ -16,9 +16,9 @@ var bookCmd = &cobra.Command{
 	Short: "Book court",
 	Long:  `Book a court immediately:`,
 	Run: func(cmd *cobra.Command, args []string) {
-		err := validateRequest(cmd, args)
+		err := validateRequest(cmd)
 		if err != nil {
-			fmt.Println(fmt.Sprintf("[Error]: %s", err.Error()))
+			fmt.Println(fmt.Sprintf("[error]: %s", err.Error()))
 			return
 		}
 
@@ -26,11 +26,29 @@ var bookCmd = &cobra.Command{
 	},
 }
 
-func validateRequest(cmd *cobra.Command, args []string) error {
+func validateRequest(cmd *cobra.Command) error {
 	date, _ := cmd.Flags().GetString("date")
 	if date == "" {
 		return errors.New("missing date")
 	}
+
+	firstName, _ := cmd.Flags().GetString("first_name")
+	if firstName == "" {
+		return errors.New("missing first_name")
+	}
+
+	lastName, _ := cmd.Flags().GetString("last_name")
+	if lastName == "" {
+		return errors.New("missing last_name")
+	}
+
+	timeSlots, _ := cmd.Flags().GetString("time_slots")
+	if timeSlots == "" {
+		return errors.New("missing time_slots")
+	}
+
+	ballboy, _ := cmd.Flags().GetBool("ballboy")
+	fmt.Println(ballboy)
 
 	return nil
 }
@@ -40,6 +58,7 @@ func init() {
 	bookCmd.PersistentFlags().String("first_name", "", "First name")
 	bookCmd.PersistentFlags().String("last_name", "", "Last name")
 	bookCmd.PersistentFlags().String("time_slots", "", "Timeslots (multiple allowed with spaces)")
+	bookCmd.PersistentFlags().String("ballboy", "", "Ballboy")
 	rootCmd.AddCommand(bookCmd)
 	// Here you will define your flags and configuration settings.
 
