@@ -78,7 +78,7 @@ type Price struct {
 
 // fetchTimeSlotsCmd represents the fetchTimeSlots command
 var fetchTimeSlotsCmd = &cobra.Command{
-	Use:   "fetchTimeSlots",
+	Use:   "fetchTimeslots",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
